@@ -21,8 +21,8 @@ public class DocenteConverter {
             if (dto.getid() != null) {
                 docente.setid(dto.getid());
             }
-            docente.setNome(dto.getNome());
-            docente.setCognome(dto.getCognome());
+            docente.setNome(dto.getNome()!=null?dto.getNome():"");
+            docente.setCognome(dto.getCognome()!=null?dto.getCognome():"");
         }
             return docente;
 

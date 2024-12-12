@@ -4,6 +4,7 @@ import com.example.demo.Converter.CorsoConverter;
 import com.example.demo.Converter.DocenteConverter;
 import com.example.demo.DTO.CorsoDTO;
 import com.example.demo.entity.Corso;
+import com.example.demo.entity.Docente;
 import com.example.demo.repository.CorsoRepository;
 import com.example.demo.repository.DocenteRepository;
 import org.springframework.stereotype.Service;
@@ -34,6 +35,8 @@ public class CorsoService {
 
     public CorsoDTO saveCorso(CorsoDTO corsoDTO) {
         Corso corso = CorsoConverter.toEntity(corsoDTO);
+        Docente docente =docenteRepository.findById(corso.getDocente().getid()).orElseThrow();
+        corso.setDocente(docente);
         corsoRepository.save(corso);
         return CorsoConverter.toDTO(corso);
     }
