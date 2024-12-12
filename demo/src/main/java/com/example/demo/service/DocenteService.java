@@ -1,6 +1,8 @@
 package com.example.demo.service;
 
 import com.example.demo.Converter.DocenteConverter;
+import com.example.demo.DTO.CorsoDTO;
+import com.example.demo.DTO.DocenteCorsiDTO;
 import com.example.demo.DTO.DocenteDTO;
 import com.example.demo.entity.Corso;
 import com.example.demo.entity.Docente;
@@ -37,7 +39,11 @@ public class DocenteService {
         }
         return docdto;
     }
-
+    public List<DocenteCorsiDTO> getAllDocenteCorso() {
+        List<Docente> docenti=docenteRepository.findAll();
+        List<DocenteCorsiDTO> doc=docenti.stream().map(DocenteConverter::DocCorsitoDTO).toList();
+        return doc;
+    }
     public DocenteDTO saveDocente(DocenteDTO docenteDTO) {
         Docente docente=DocenteConverter.toEntity(docenteDTO);
         docente=docenteRepository.save(docente);

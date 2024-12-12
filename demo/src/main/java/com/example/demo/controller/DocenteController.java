@@ -1,5 +1,6 @@
 package com.example.demo.controller;
 
+import com.example.demo.DTO.DocenteCorsiDTO;
 import com.example.demo.DTO.DocenteDTO;
 import com.example.demo.entity.Docente;
 import com.example.demo.service.DocenteService;
@@ -25,6 +26,11 @@ public class DocenteController {
     @GetMapping("")
     public List<DocenteDTO> getAllDocenti() {
         return docenteService.getAllDocente();
+    }
+
+    @GetMapping("/docentiCorsi")
+    public List<DocenteCorsiDTO> getDocentiCorsi() {
+        return docenteService.getAllDocenteCorso();
     }
 
     @PostMapping("/saveDocente")

@@ -1,7 +1,11 @@
 package com.example.demo.Converter;
 
+import com.example.demo.DTO.CorsoDTO;
+import com.example.demo.DTO.DocenteCorsiDTO;
 import com.example.demo.DTO.DocenteDTO;
 import com.example.demo.entity.Docente;
+
+import java.util.List;
 
 public class DocenteConverter {
 
@@ -12,6 +16,18 @@ public class DocenteConverter {
         } else {
             return null;
         }
+    }
+
+    public static DocenteCorsiDTO DocCorsitoDTO(Docente docente) {
+        DocenteCorsiDTO doc=new DocenteCorsiDTO();
+        if (docente!=null) {
+            doc.setid(docente.getid());
+            doc.setNome(docente.getNome());
+            doc.setCognome(docente.getCognome());
+            List<CorsoDTO> lista=docente.getCorsi().stream().map(CorsoConverter::toDTO2).toList();
+            doc.setCorsi(lista);
+        }
+        return doc;
     }
 
 
