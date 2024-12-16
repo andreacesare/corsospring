@@ -39,4 +39,9 @@ public class CorsoController {
     public CorsoDTO updateCorso(@PathVariable("idCorso") Integer id, @RequestBody CorsoDTO corsoDTO) {
         return corsoService.updateCorso(id, corsoDTO);
     }
+
+    @GetMapping("/getCorsoByDurata")
+    public List<CorsoDTO> getCorsoByDurata(@RequestParam("durata") String durata) {
+        return corsoService.getCorsoByDurata(durata);
+    }
 }

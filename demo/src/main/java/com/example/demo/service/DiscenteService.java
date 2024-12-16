@@ -1,4 +1,5 @@
 package com.example.demo.service;
+import com.example.demo.Converter.CorsoConverter;
 import com.example.demo.Converter.DiscenteConverter;
 import com.example.demo.DTO.CorsoDTO;
 import com.example.demo.DTO.DiscenteDTO;
@@ -45,9 +46,16 @@ public class DiscenteService {
         discenteRepository.save(discente);
         return DiscenteConverter.toDTO(discente);
     }
+
+
     public DiscenteDTO deleteDiscente(int id){
         Discente discente=discenteRepository.findById(id).orElseThrow(()->new NoSuchElementException("No se encontro el discente"));
         DiscenteDTO dto=DiscenteConverter.toDTO(discente);
+        if(discente.getCorsi()!=null) {
+            for (Corso c : discente.getCorsi()) {
+                c.getDiscenti().remove(discente);
+            }
+        }
         discenteRepository.deleteById(id);
         return dto;
     }
@@ -61,6 +69,19 @@ public class DiscenteService {
         discenteRepository.save(discente);
         return DiscenteConverter.toDTO(discente);
         
+    }
+
+    public DiscenteDTO addCorso(Integer idDiscente,Integer idCorso) throws Exception{
+        Corso corso=corsoRepository.findById(idCorso).orElseThrow(()->new NoSuchElementException("No se encontro el corso"));
+        Discente d=discenteRepository.findById(idDiscente).orElseThrow(()->new NoSuchElementException("No se encontro el discente"));
+        if(!corso.getDiscenti().contains(d)) {
+            corso.getDiscenti().add(d);
+            d.getCorsi().add(corso);
+            discenteRepository.save(d);
+            corsoRepository.save(corso);
+            return DiscenteConverter.toDTO(d);
+        }
+        else throw new Exception("corso gia seguito");
     }
 }
 

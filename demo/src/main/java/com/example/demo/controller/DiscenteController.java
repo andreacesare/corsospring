@@ -1,5 +1,6 @@
 package com.example.demo.controller;
 
+import com.example.demo.DTO.CorsoDTO;
 import com.example.demo.DTO.DiscenteDTO;
 import com.example.demo.service.DiscenteService;
 import org.springframework.web.bind.annotation.*;
@@ -37,6 +38,11 @@ public class DiscenteController {
     @PutMapping("/updateDiscente/{idDiscente}")
     public DiscenteDTO updateDiscente(@PathVariable("idDiscente") Integer id, @RequestBody DiscenteDTO discente) {
         return discenteService.updateDiscente(id,discente);
+    }
+
+    @PostMapping("{idDiscente}/addCorso/{idCorso}")
+    public DiscenteDTO addCorso(@PathVariable("idDiscente") Integer idDiscente,@PathVariable("idCorso") Integer idCorso) throws Exception{
+        return discenteService.addCorso(idDiscente,idCorso);
     }
 
 }

@@ -54,12 +54,12 @@ public class DocenteService {
     public DocenteDTO deleteDocente(int id) {
 
         Docente docente=docenteRepository.findById(id).orElseThrow(() -> new NoSuchElementException("Docente con ID " + id + " non trovato."));
-        if(docente.getCorsi()!=null) {
-            for (Corso corso : docente.getCorsi()) {
-                corso.getDiscenti().clear();
-                corsoRepository.delete(corso);
+       if(docente.getCorsi()!=null){
+            for(Corso corso:docente.getCorsi()) {
+            corso.setDocente(null);
+            corsoRepository.save(corso);
             }
-        }
+       }
         docenteRepository.deleteById(id);
         DocenteDTO docdto=DocenteConverter.toDTO(docente);
 

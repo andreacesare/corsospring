@@ -56,4 +56,9 @@ public class CorsoService {
         corsoRepository.save(corso);
         return CorsoConverter.toDTO(corso);
     }
+
+    public List<CorsoDTO> getCorsoByDurata(String d){
+    List<Corso> corsi =corsoRepository.findCorsoByDurata(d);
+    return corsi.stream().map(CorsoConverter::toDTO).collect(Collectors.toList());
+    }
 }

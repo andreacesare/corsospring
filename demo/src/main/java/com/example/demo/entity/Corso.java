@@ -24,7 +24,7 @@ public class Corso {
 
     @ManyToMany
     @JoinTable(name = "discente_corso", joinColumns = @JoinColumn(name="id_corso"),inverseJoinColumns = @JoinColumn(name="id_discente"))
-    private List<Discente> discenti;
+    private List<Discente> discenti=new ArrayList<>();
 
     public String getNome() {
         return this.nome;
