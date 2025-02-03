@@ -29,8 +29,10 @@ public class DiscenteConverter {
         discente.setCognome(dto.getCognome());
         discente.setMatricola(dto.getMatricola());
         discente.setData_nascita(dto.getData_nascita());
-        List<Corso> corsi=dto.getCorsi().stream().map(CorsoConverter::toEntity).toList();
-        discente.setCorsi(corsi);
+        if(dto.getCorsi()!=null) {
+            List<Corso> corsi = dto.getCorsi().stream().map(CorsoConverter::toEntity).toList();
+            discente.setCorsi(corsi);
+        }
         return discente;
 
     }

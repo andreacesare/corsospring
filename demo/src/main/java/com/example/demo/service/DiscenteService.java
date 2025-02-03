@@ -62,10 +62,10 @@ public class DiscenteService {
 
     public DiscenteDTO updateDiscente(Integer id,DiscenteDTO discenteDTO){
         Discente discente=discenteRepository.findById(id).orElseThrow(()->new NoSuchElementException("No se encontro el discente"));
-        discente.setNome(discenteDTO.getNome());
-        discente.setCognome(discenteDTO.getCognome());
-        discente.setData_nascita(discenteDTO.getData_nascita());
-        discente.setMatricola(discenteDTO.getMatricola());
+        if(discenteDTO.getNome()!=null){discente.setNome(discenteDTO.getNome());}
+        if(discenteDTO.getCognome()!=null){discente.setCognome(discenteDTO.getCognome());}
+        if(discenteDTO.getData_nascita()!=null){discente.setData_nascita(discenteDTO.getData_nascita());}
+        if(discenteDTO.getMatricola()!=null){discente.setMatricola(discenteDTO.getMatricola());}
         discenteRepository.save(discente);
         return DiscenteConverter.toDTO(discente);
         

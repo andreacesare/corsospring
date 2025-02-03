@@ -49,10 +49,10 @@ public class CorsoService {
 
     public CorsoDTO updateCorso(Integer id,CorsoDTO corsoDTO) {
         Corso corso=corsoRepository.findById(id).orElseThrow(()-> new NoSuchElementException("Corso con id:"+id+" non trovato"));
-        corso.setNome(corsoDTO.getNome());
-        corso.setDurata(corsoDTO.getDurata());
-        corso.setData_inizio(corsoDTO.getData_inizio());
-        corso.setDocente(DocenteConverter.toEntity(corsoDTO.getDocente()));
+        if(corsoDTO.getNome()!=null){corso.setNome(corsoDTO.getNome());}
+        if(corsoDTO.getDurata()!=null){corso.setDurata(corsoDTO.getDurata());}
+        if(corsoDTO.getData_inizio()!=null){corso.setData_inizio(corsoDTO.getData_inizio());}
+        if(corsoDTO.getDocente()!=null){corso.setDocente(DocenteConverter.toEntity(corsoDTO.getDocente()));}
         corsoRepository.save(corso);
         return CorsoConverter.toDTO(corso);
     }

@@ -20,6 +20,7 @@ public class CorsoConverter {
         corsod.setDurata(corso.getDurata());
         return corsod;
     }
+
     public static Corso toEntity(CorsoDTO corsoDTO) {
         Corso corso = new Corso();
         if(corsoDTO.getId() != null) corso.setId(corsoDTO.getId());

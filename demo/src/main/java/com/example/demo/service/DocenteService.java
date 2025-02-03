@@ -20,6 +20,7 @@ import static com.example.demo.Converter.DocenteConverter.toDTO;
 public class DocenteService {
     private final DocenteRepository docenteRepository;
     public final CorsoRepository corsoRepository;
+
     public DocenteService(DocenteRepository docenteRepository,CorsoRepository corsoRepository) {
         this.docenteRepository = docenteRepository;
         this.corsoRepository=corsoRepository;
@@ -39,11 +40,13 @@ public class DocenteService {
         }
         return docdto;
     }
+
     public List<DocenteCorsiDTO> getAllDocenteCorso() {
         List<Docente> docenti=docenteRepository.findAll();
         List<DocenteCorsiDTO> doc=docenti.stream().map(DocenteConverter::DocCorsitoDTO).toList();
         return doc;
     }
+
     public DocenteDTO saveDocente(DocenteDTO docenteDTO) {
         Docente docente=DocenteConverter.toEntity(docenteDTO);
         docente=docenteRepository.save(docente);
@@ -68,8 +71,8 @@ public class DocenteService {
 
     public DocenteDTO updateDocente(Integer id,DocenteDTO docenteDTO) {
         Docente docente=docenteRepository.findById(id).orElseThrow(() -> new NoSuchElementException("Docente non trovato"));
-        docente.setNome(docenteDTO.getNome());
-        docente.setCognome(docenteDTO.getCognome());
+        if(docenteDTO.getNome()!=null){docente.setNome(docenteDTO.getNome());}
+        if(docenteDTO.getCognome()!=null){docente.setCognome(docenteDTO.getCognome());}
         Docente doc=docenteRepository.save(docente);
         return DocenteConverter.toDTO(doc);
     }

@@ -15,6 +15,7 @@ public class CorsoDTO {
     private String dataInizio;
     private String durata;;
     private DocenteDTO docente;
+    public List<DiscenteDTO> discenti;
 
     public CorsoDTO() {}
 
@@ -49,6 +50,10 @@ public class CorsoDTO {
     public void setId(int id) {this.id = id;}
     public DocenteDTO getDocente() {return this.docente;}
     public void setDocente(DocenteDTO docente) {this.docente = docente;}
+    public List<DiscenteDTO> getDiscenti() {return this.discenti;}
+    public void setDiscenti(List<DiscenteDTO> discenti) {
+        this.discenti = discenti;
+    }
 
 
 }
