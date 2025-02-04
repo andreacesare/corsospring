@@ -40,7 +40,7 @@ public class Docente {
         this.id = id;
     }
 
-    public int getid() {
+    public Integer getid() {
         return id;
     }
     public List<Corso> getCorsi() { return corsi;}

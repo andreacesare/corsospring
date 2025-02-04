@@ -35,7 +35,6 @@ public class DocenteService {
         List<Docente> docenti=docenteRepository.findAll();
         List<DocenteDTO> docdto=new ArrayList<DocenteDTO>();
         for(Docente docente:docenti){
-            DocenteConverter.toDTO(docente);
             docdto.add(DocenteConverter.toDTO(docente));
         }
         return docdto;

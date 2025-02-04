@@ -15,13 +15,9 @@ public class DocenteDTO {
     private Integer id;
     private String nome;
     private String cognome;
+    private List<CorsoDTO> corsi = new ArrayList<>();
 
-    public DocenteDTO(Integer id, String nome, String cognome) {
-        this.id = id;
-        this.nome = nome;
-        this.cognome = cognome;
-    }
-
+    public DocenteDTO() {}
 
     public void setNome(String nome) {
         this.nome = nome;
@@ -45,6 +41,14 @@ public class DocenteDTO {
 
     public Integer getid() {
         return id;
+    }
+
+    public void setCorsi(List<CorsoDTO> corsi) {
+        this.corsi = corsi;
+    }
+
+    public List<CorsoDTO> getCorsi() {
+        return corsi;
     }
 
 

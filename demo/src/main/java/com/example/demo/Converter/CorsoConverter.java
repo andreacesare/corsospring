@@ -3,7 +3,7 @@ package com.example.demo.Converter;
 import com.example.demo.DTO.CorsoDTO;
 import com.example.demo.DTO.DocenteDTO;
 import com.example.demo.entity.Corso;
-import com.example.demo.entity.Docente;
+
 
 public class CorsoConverter {
 
@@ -13,12 +13,12 @@ public class CorsoConverter {
     }
 
     public static CorsoDTO toDTO2(Corso corso) {
-        CorsoDTO corsod=new CorsoDTO();
-        corsod.setId(corso.getId());
-        corsod.setNome(corso.getNome());
-        corsod.setData_inizio(corso.getData_inizio());
-        corsod.setDurata(corso.getDurata());
-        return corsod;
+        CorsoDTO corsodto=new CorsoDTO();
+        corsodto.setId(corso.getId());
+        corsodto.setNome(corso.getNome());
+        corsodto.setData_inizio(corso.getData_inizio());
+        corsodto.setDurata(corso.getDurata());
+        return corsodto;
     }
 
     public static Corso toEntity(CorsoDTO corsoDTO) {

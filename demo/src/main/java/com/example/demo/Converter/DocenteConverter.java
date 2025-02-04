@@ -10,12 +10,16 @@ import java.util.List;
 public class DocenteConverter {
 
     public static DocenteDTO toDTO(Docente docente) {
-        if (docente!=null) {
-            DocenteDTO doc = new DocenteDTO(docente.getid(), docente.getNome(), docente.getCognome());
-            return doc;
-        } else {
-            return null;
+        DocenteDTO docenteDTO = new DocenteDTO();
+        if(docente.getid()!=null){docenteDTO.setid(docente.getid());}
+        if(docente.getNome()!=null){docenteDTO.setNome(docente.getNome());}
+        if(docente.getCognome()!=null){docenteDTO.setCognome(docente.getCognome());}
+        if(docente.getCorsi()!=null){
+            List<CorsoDTO> corsi=docente.getCorsi().stream().map(CorsoConverter::toDTO2).toList();
+            docenteDTO.setCorsi(corsi);
         }
+
+        return docenteDTO;
     }
 
     public static DocenteCorsiDTO DocCorsitoDTO(Docente docente) {
