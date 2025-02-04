@@ -28,10 +28,10 @@ public class DocenteController {
         return docenteService.getAllDocente();
     }
 
-    @GetMapping("/docentiCorsi")
-    public List<DocenteCorsiDTO> getDocentiCorsi() {
-        return docenteService.getAllDocenteCorso();
-    }
+//    @GetMapping("/docentiCorsi")
+//    public List<DocenteCorsiDTO> getDocentiCorsi() {
+//        return docenteService.getAllDocenteCorso();
+//    }
 
     @PostMapping("/saveDocente")
     public DocenteDTO saveDocente(@RequestBody DocenteDTO docenteDTO) {

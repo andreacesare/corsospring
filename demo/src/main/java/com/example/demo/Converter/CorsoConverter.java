@@ -9,7 +9,14 @@ public class CorsoConverter {
 
     public static CorsoDTO toDTO(Corso corso) {
         DocenteDTO doc=DocenteConverter.toDTO(corso.getDocente()!=null?corso.getDocente():null);
-        return new CorsoDTO(corso.getId(), corso.getNome(), corso.getData_inizio(),corso.getDurata(),doc);
+        CorsoDTO corsoDTO=new CorsoDTO();
+        corsoDTO.setId(corso.getId());
+        corsoDTO.setNome(corso.getNome());
+        corsoDTO.setDurata(corso.getDurata());
+        corsoDTO.setDocente(doc);
+        corsoDTO.setData_inizio(corso.getData_inizio());
+        corsoDTO.setDiscenti(corso.getDiscenti().stream().map(DiscenteConverter::toDTO).toList());
+        return corsoDTO;
     }
 
     public static CorsoDTO toDTO2(Corso corso) {

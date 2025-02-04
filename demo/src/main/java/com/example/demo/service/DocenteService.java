@@ -40,11 +40,6 @@ public class DocenteService {
         return docdto;
     }
 
-    public List<DocenteCorsiDTO> getAllDocenteCorso() {
-        List<Docente> docenti=docenteRepository.findAll();
-        List<DocenteCorsiDTO> doc=docenti.stream().map(DocenteConverter::DocCorsitoDTO).toList();
-        return doc;
-    }
 
     public DocenteDTO saveDocente(DocenteDTO docenteDTO) {
         Docente docente=DocenteConverter.toEntity(docenteDTO);

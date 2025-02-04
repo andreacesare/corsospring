@@ -8,6 +8,7 @@ import com.example.demo.entity.Docente;
 import com.example.demo.repository.CorsoRepository;
 import com.example.demo.repository.DocenteRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -41,6 +42,7 @@ public class CorsoService {
         return CorsoConverter.toDTO(corso);
     }
 
+    @Transactional
     public CorsoDTO deleteCorso(int id) {
         Corso corso=corsoRepository.findById(id).orElseThrow(()-> new NoSuchElementException("Corso con id:"+id+" non trovato"));
         corsoRepository.deleteById(id);

@@ -16,7 +16,7 @@ public class DiscenteConverter {
         dto.setMatricola(discente.getMatricola());
         dto.setData_nascita(discente.getData_nascita());
         if(discente.getCorsi()!=null) {
-            List<CorsoDTO> corsi = discente.getCorsi().stream().map(CorsoConverter::toDTO).toList();
+            List<CorsoDTO> corsi = discente.getCorsi().stream().map(CorsoConverter::toDTO2).toList();
             dto.setCorsi(corsi);
         }
         return dto;
