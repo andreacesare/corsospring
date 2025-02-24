@@ -1,23 +1,24 @@
 package com.example.demo.service;
 
 import com.example.demo.Converter.DocenteConverter;
-import com.example.demo.DTO.CorsoDTO;
-import com.example.demo.DTO.DocenteCorsiDTO;
 import com.example.demo.DTO.DocenteDTO;
 import com.example.demo.entity.Corso;
 import com.example.demo.entity.Docente;
 import com.example.demo.repository.CorsoRepository;
 import com.example.demo.repository.DocenteRepository;
+
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
 
-import static com.example.demo.Converter.DocenteConverter.toDTO;
+
 
 @Service
 public class DocenteService {
+
+
     private final DocenteRepository docenteRepository;
     public final CorsoRepository corsoRepository;
 
@@ -33,13 +34,12 @@ public class DocenteService {
 
     public List<DocenteDTO> getAllDocente() {
         List<Docente> docenti=docenteRepository.findAll();
-        List<DocenteDTO> docdto=new ArrayList<DocenteDTO>();
+        List<DocenteDTO> docdto=new ArrayList<>();
         for(Docente docente:docenti){
             docdto.add(DocenteConverter.toDTO(docente));
         }
         return docdto;
     }
-
 
     public DocenteDTO saveDocente(DocenteDTO docenteDTO) {
         Docente docente=DocenteConverter.toEntity(docenteDTO);
@@ -58,9 +58,9 @@ public class DocenteService {
             }
        }
         docenteRepository.deleteById(id);
-        DocenteDTO docdto=DocenteConverter.toDTO(docente);
 
-        return docdto;
+
+        return DocenteConverter.toDTO(docente);
     }
 
     public DocenteDTO updateDocente(Integer id,DocenteDTO docenteDTO) {
@@ -70,5 +70,10 @@ public class DocenteService {
         Docente doc=docenteRepository.save(docente);
         return DocenteConverter.toDTO(doc);
     }
+
+    public List<DocenteDTO> ricerca(String text){
+        return docenteRepository.ricerca(text).stream().map(DocenteConverter::toDTO).toList();
+    }
+
 
 }

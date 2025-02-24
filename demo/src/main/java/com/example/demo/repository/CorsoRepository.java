@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface CorsoRepository extends JpaRepository<Corso,Integer> {
+public interface CorsoRepository extends JpaRepository<Corso,Integer>,CorsoCustomRepository {
 
     @Query("Select c from Corso c where c.durata =:d")
     List<Corso> findCorsoByDurata(@Param("d") String durata);

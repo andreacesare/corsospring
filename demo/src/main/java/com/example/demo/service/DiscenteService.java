@@ -1,5 +1,5 @@
 package com.example.demo.service;
-import com.example.demo.Converter.CorsoConverter;
+
 import com.example.demo.Converter.DiscenteConverter;
 import com.example.demo.DTO.CorsoDTO;
 import com.example.demo.DTO.DiscenteDTO;
@@ -7,7 +7,7 @@ import com.example.demo.entity.Corso;
 import com.example.demo.entity.Discente;
 import com.example.demo.repository.CorsoRepository;
 import com.example.demo.repository.DiscenteRepository;
-import org.springframework.data.crossstore.ChangeSetPersister;
+
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -47,7 +47,6 @@ public class DiscenteService {
         return DiscenteConverter.toDTO(discente);
     }
 
-
     public DiscenteDTO deleteDiscente(int id){
         Discente discente=discenteRepository.findById(id).orElseThrow(()->new NoSuchElementException("No se encontro el discente"));
         DiscenteDTO dto=DiscenteConverter.toDTO(discente);
@@ -82,6 +81,16 @@ public class DiscenteService {
             return DiscenteConverter.toDTO(d);
         }
         else throw new Exception("corso gia seguito");
+    }
+
+    public DiscenteDTO removeCorso(Integer idDiscente,Integer idCorso){
+        Corso corso=corsoRepository.findById(idCorso).orElseThrow(()->new NoSuchElementException("No se encontro el corso"));
+        Discente discente=discenteRepository.findById(idDiscente).orElseThrow(()->new NoSuchElementException("No se encontro el discente"));
+        corso.getDiscenti().remove(discente);
+        discente.getCorsi().remove(corso);
+        discenteRepository.save(discente);
+        corsoRepository.save(corso);
+        return DiscenteConverter.toDTO(discente);
     }
 }
 

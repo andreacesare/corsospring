@@ -1,10 +1,10 @@
 package com.example.demo.controller;
 
-import com.example.demo.DTO.DocenteCorsiDTO;
+
 import com.example.demo.DTO.DocenteDTO;
-import com.example.demo.entity.Docente;
+
 import com.example.demo.service.DocenteService;
-import jakarta.persistence.Entity;
+
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -28,11 +28,6 @@ public class DocenteController {
         return docenteService.getAllDocente();
     }
 
-//    @GetMapping("/docentiCorsi")
-//    public List<DocenteCorsiDTO> getDocentiCorsi() {
-//        return docenteService.getAllDocenteCorso();
-//    }
-
     @PostMapping("/saveDocente")
     public DocenteDTO saveDocente(@RequestBody DocenteDTO docenteDTO) {
         return docenteService.saveDocente(docenteDTO);
@@ -46,5 +41,10 @@ public class DocenteController {
     @PutMapping("/updateDocente/{idDocente}")
     public DocenteDTO updateDocente(@PathVariable("idDocente") Integer id, @RequestBody DocenteDTO docenteDTO) {
         return docenteService.updateDocente(id,docenteDTO);
+    }
+
+    @GetMapping("/ricerca")
+    public List<DocenteDTO> getRicercaDocenti(@RequestParam(required = false) String text) {
+        return docenteService.ricerca(text);
     }
 }

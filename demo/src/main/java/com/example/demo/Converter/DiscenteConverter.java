@@ -8,6 +8,7 @@ import com.example.demo.entity.Discente;
 import java.util.List;
 
 public class DiscenteConverter {
+
     public static DiscenteDTO toDTO(Discente discente) {
         DiscenteDTO dto = new DiscenteDTO();
         if (discente.getid()!=null) dto.setid(discente.getid());
