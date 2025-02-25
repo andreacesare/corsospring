@@ -8,12 +8,13 @@ import com.example.demo.entity.Corso;
 public class CorsoConverter {
 
     public static CorsoDTO toDTO(Corso corso) {
-        DocenteDTO doc=DocenteConverter.toDTO(corso.getDocente()!=null?corso.getDocente():null);
         CorsoDTO corsoDTO=new CorsoDTO();
+        if(corso.getDocente()!=null){
+        DocenteDTO doc=DocenteConverter.toDTO(corso.getDocente());
+        corsoDTO.setDocente(doc);}
         corsoDTO.setId(corso.getId());
         corsoDTO.setNome(corso.getNome());
         corsoDTO.setDurata(corso.getDurata());
-        corsoDTO.setDocente(doc);
         corsoDTO.setData_inizio(corso.getData_inizio());
         corsoDTO.setDiscenti(corso.getDiscenti().stream().map(DiscenteConverter::toDTO).toList());
         return corsoDTO;
