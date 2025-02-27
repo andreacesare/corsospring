@@ -21,6 +21,7 @@ public class UtenteController {
 
     @PostMapping("/login")
     public ResponseEntity<Map<String, String>> login(@RequestParam String username, @RequestParam String password) {
+        System.out.println(username);
         return this.utenteService.login(username,password);
     }
 
