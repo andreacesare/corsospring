@@ -32,14 +32,6 @@ public class JwtUtil {
                 .compact();
     }
 
-    public String parseToken(String token){
-        return Jwts.parser()
-                .verifyWith(getSigninKey())
-                .build()
-                .parseSignedClaims(token)
-                .getPayload()
-                .getSubject();
-    }
 
     public boolean validateToken(String token){
         try{
